@@ -8,7 +8,7 @@
 ![Einstein](https://img.shields.io/badge/Einstein_AI-00A1E0?style=for-the-badge&logo=salesforce&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge)
 
-> Built by **[Aman Hashmi]** · [LinkedIn](https://github.com/amanhashmi97/sf-integration-platform) · [GitHub](https://www.linkedin.com/in/hashmi-aman/)
+> Built by **[Aman Hashmi]** · [LinkedIn](https://www.linkedin.com/in/hashmi-aman/) · [GitHub](https://github.com/amanhashmi97/sf-integration-platform)
 
 **🌐 Live Demo:** [Guest Application Portal](https://sf-integration-platform-dev-ed.develop.my.site.com/portal/)
 
@@ -93,7 +93,6 @@ flowchart TD
 force-app/main/default/classes/
 ├── ApplicationIntegrationService.cls
 ├── ApplicationIntegrationOrchestrator.cls  
-├── SplunkLogger.cls
 └── IntegrationLogService.cls
 ```
 
@@ -110,7 +109,6 @@ force-app/main/default/classes/
 ```
 force-app/main/default/classes/
 ├── ApplicationInboundAPI.cls
-└── FieldMappingService.cls
 ```
 
 ---
@@ -128,7 +126,6 @@ force-app/main/default/classes/
 force-app/main/default/classes/
 ├── ApplicationRetryBatch.cls
 ├── ApplicationRetryScheduler.cls
-└── SLABreachService.cls
 
 force-app/main/default/flows/
 └── SLA_Breach_Email_Alert.flow-meta.xml
@@ -184,7 +181,7 @@ force-app/main/default/
     └── portalFooter/
 ```
 
-**Live site:** `https://[your-domain].my.site.com/portal`
+**Live site:** `https://sf-integration-platform-dev-ed.develop.my.site.com/portal/`
 
 ---
 
