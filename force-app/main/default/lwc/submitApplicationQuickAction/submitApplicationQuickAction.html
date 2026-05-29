@@ -1,0 +1,47 @@
+<template>
+    <div class="slds-modal__content slds-p-around_medium">
+
+        <template lwc:if={isLoading}>
+            <div class="slds-align_absolute-center" style="height:5rem;">
+                <lightning-spinner 
+                    alternative-text="Submitting" 
+                    size="medium">
+                </lightning-spinner>
+            </div>
+        </template>
+
+        <template if:false={isLoading}>
+            <div class="slds-box slds-theme_shade slds-m-bottom_medium">
+                <p class="slds-text-body_regular">
+                    <lightning-icon 
+                        icon-name="utility:warning" 
+                        variant="warning" 
+                        size="x-small" 
+                        class="slds-m-right_x-small">
+                    </lightning-icon>
+                    Submit this application for approval? This <strong>cannot be undone</strong>.
+                </p>
+            </div>
+
+            <div class="slds-grid slds-grid_align-end slds-gutters_small">
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-button
+                        variant="neutral"
+                        label="Cancel"
+                        class="slds-col"
+                        onclick={handleCancel}>
+                    </lightning-button>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-button
+                        variant="brand"
+                        label="Confirm Submit"
+                        class="slds-col"
+                        onclick={handleSubmit}>
+                    </lightning-button>
+                </div>
+            </div>
+        </template>
+
+    </div>
+</template>

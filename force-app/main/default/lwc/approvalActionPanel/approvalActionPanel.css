@@ -1,0 +1,40 @@
+.panel-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 2fr;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.header-row {
+    background: #f3f3f3;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #514f4d;
+    margin-bottom: 0.5rem;
+}
+
+.data-row {
+    padding: 0.75rem;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+}
+
+.col {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+}
+
+.actor-info {
+    display: flex;
+    align-items: center;
+}
+
+.status-draft     { background: #e5e5e5; color: #514f4d; }
+.status-submitted { background: #fff3cd; color: #8a6d00; }
+.status-approved  { background: #cdecd4; color: #0a6640; }
+.status-rejected  { background: #fcdbd9; color: #8e0b00; }

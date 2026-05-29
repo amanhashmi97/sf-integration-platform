@@ -1,0 +1,147 @@
+<template>
+    <lightning-card>
+        <div slot="title">
+            <lightning-icon icon-name="utility:approval" size="small" class="slds-m-right_x-small"></lightning-icon>
+            Application Review Panel
+        </div>
+
+        <div class="slds-p-horizontal_medium slds-p-bottom_medium">
+
+            <!-- Loading -->
+            <template lwc:if={isLoading}>
+                <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+            </template>
+
+            <template lwc:if={isReady}>
+
+                <!-- 4-column header row -->
+                <div class="panel-grid header-row">
+                    <div class="col">Status</div>
+                    <div class="col">Action</div>
+                    <div class="col">Action Taken By</div>
+                    <div class="col">Comments</div>
+                </div>
+
+                <!-- Data row -->
+                <div class="panel-grid data-row">
+
+                    <!-- Status -->
+                    <div class="col">
+                        <span class={statusBadgeClass}>{status}</span>
+                    </div>
+
+                    <!-- Action buttons -->
+                    <div class="col">
+                        <template lwc:if={isPending}>
+                            <lightning-button
+                                variant="success"
+                                label="Approve"
+                                icon-name="utility:check"
+                                onclick={openApproveModal}
+                                disabled={isActing}
+                                class="slds-m-right_x-small">
+                            </lightning-button>
+                            <lightning-button
+                                variant="destructive"
+                                label="Reject"
+                                icon-name="utility:close"
+                                onclick={openRejectModal}
+                                disabled={isActing}>
+                            </lightning-button>
+                        </template>
+                        <template lwc:if={isActed}>
+                            <span class="slds-badge slds-badge_lightest">No action needed</span>
+                        </template>
+                    </div>
+
+                    <!-- Action taken by -->
+                    <div class="col">
+                        <template lwc:if={actionTakenBy}>
+                            <div class="actor-info">
+                                <lightning-icon icon-name="standard:user" size="x-small" class="slds-m-right_xx-small"></lightning-icon>
+                                {actionTakenBy}
+                            </div>
+                        </template>
+                        <template lwc:if={noActionYet}>
+                            <span class="slds-text-color_weak">—</span>
+                        </template>
+                    </div>
+
+                    <!-- Comments -->
+                    <div class="col">
+                        <template lwc:if={approvalComments}>
+                            {approvalComments}
+                        </template>
+                        <template lwc:if={noActionYet}>
+                            <span class="slds-text-color_weak">—</span>
+                        </template>
+                    </div>
+
+                </div>
+            </template>
+
+        </div>
+    </lightning-card>
+
+    <!-- Reject Modal -->
+    <template lwc:if={showRejectModal}>
+        <section class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h2 class="slds-modal__title">Reject Application</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium">
+                    <lightning-textarea
+                        label="Rejection Comments"
+                        placeholder="Provide reason for rejection..."
+                        value={rejectComments}
+                        onchange={handleCommentsChange}
+                        required>
+                    </lightning-textarea>
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning-button label="Cancel" onclick={closeRejectModal} class="slds-m-right_x-small"></lightning-button>
+                    <lightning-button variant="destructive" label="Confirm Reject" onclick={handleReject} disabled={isActing}></lightning-button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+    <!-- Approve Modal -->
+    <template lwc:if={showApproveModal}>
+        <section class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h2 class="slds-modal__title">Approve Application</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium">
+                    <p class="slds-m-bottom_medium">
+                        Are you sure you want to approve this application? This cannot be undone.
+                    </p>
+                    <lightning-textarea
+                        label="Comments (Optional)"
+                        placeholder="Add any approval notes..."
+                        value={approveComments}
+                        onchange={handleApproveCommentsChange}>
+                    </lightning-textarea>
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning-button 
+                        label="Cancel" 
+                        onclick={closeApproveModal} 
+                        class="slds-m-right_x-small">
+                    </lightning-button>
+                    <lightning-button 
+                        variant="success" 
+                        label="Confirm Approve" 
+                        onclick={handleApprove} 
+                        disabled={isActing}>
+                    </lightning-button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+</template>

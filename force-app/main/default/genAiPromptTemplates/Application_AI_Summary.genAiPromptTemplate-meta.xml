@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>lHIrLv01MTg+aXOTOtU4c8G1KxItARQUwrg8uUzL7Pg=_1</activeVersionIdentifier>
+    <developerName>Application_AI_Summary</developerName>
+    <masterLabel>Application AI Summary</masterLabel>
+    <overridable>false</overridable>
+    <relatedEntity>Application__c</relatedEntity>
+    <templateVersions>
+        <content>You are a Salesforce CRM assistant. Analyze this application 
+and provide a concise 3-4 sentence professional summary covering: 
+current status, key details, any risks, and recommended action.
+
+=== APPLICATION DETAILS ===
+Name:     {!$Input:Application__c.Name}
+Status:    {!$Input:Application__c.Status__c}
+Priority:   {!$Input:Application__c.Priority__c}
+Type:     {!$Input:Application__c.Application_Type__c}
+Amount:    {!$Input:Application__c.Amount__c}
+Account:    {!$Input:Application__c.Account__r.Name}
+Applicant:   {!$Input:Application__c.Applicant_Name__c}
+Submitted:   {!$Input:Application__c.Submission_Date__c}
+SLA Breach:  {!$Input:Application__c.SLA_Breach_Date__c}
+Resubmission: {!$Input:Application__c.Is_Resubmission__c}
+Guest Portal: {!$Input:Application__c.Is_Guest_Submission__c}
+Rejection:   {!$Input:Application__c.Rejection_Reason__c}
+
+Provide a professional 3-4 sentence summary, within 350 characters:
+</content>
+        <fileDroppingStrategy>{&quot;dropFilesBy&quot;:&quot;LAST_MODIFIED_DATE&quot;,&quot;dropFileStartingWith&quot;:&quot;OLDEST&quot;}</fileDroppingStrategy>
+        <inputs>
+            <apiName>objectToSummarize</apiName>
+            <definition>SOBJECT://Application__c</definition>
+            <referenceName>Input:Application__c</referenceName>
+            <required>true</required>
+        </inputs>
+        <isCitationEnabled>false</isCitationEnabled>
+        <primaryModel>sfdc_ai__DefaultBedrockAnthropicClaude45Opus</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>lHIrLv01MTg+aXOTOtU4c8G1KxItARQUwrg8uUzL7Pg=_1</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__recordSummary</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

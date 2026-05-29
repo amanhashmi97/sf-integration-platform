@@ -1,0 +1,288 @@
+<template>
+    <div class="portal-wrapper">
+
+        <!-- STEP 1: Mock Login -->
+        <template lwc:if={isStepLogin}>
+            <div class="card">
+                <div class="card-header">
+                    <h2>Apply Now</h2>
+                    <p class="subtitle">Enter your details to get started</p>
+                </div>
+                <div class="card-body">
+                    <lightning-input label="Full Name" value={name}
+                        onchange={handleName} required></lightning-input>
+                    <lightning-input label="Email" type="email" value={email}
+                        onchange={handleEmail} required></lightning-input>
+                    <template lwc:if={loginError}>
+                        <p class="error-msg">{loginError}</p>
+                    </template>
+                    <div class="btn-row">
+                        <lightning-button variant="brand" label="Continue"
+                            onclick={handleLogin} disabled={isLoading}>
+                        </lightning-button>
+                    </div>
+                    <template lwc:if={isLoading}>
+                        <lightning-spinner alternative-text="Checking..."></lightning-spinner>
+                    </template>
+                </div>
+            </div>
+        </template>
+
+        <!-- STEP 2: Application Form -->
+        <template lwc:if={isStepForm}>
+            <div class="card">
+                <div class="card-header">
+                    <h2>New Application</h2>
+                    <p class="subtitle">Hello, {name}! Fill in your details below.</p>
+                </div>
+                <div class="card-body">
+
+                    <!-- Account Search -->
+                    <div class="field-group">
+                        <label class="field-label">
+                            Company / Account <span class="required">*</span>
+                        </label>
+                        <input type="text" class="search-input"
+                            placeholder="Search existing accounts..."
+                            value={accountSearchTerm}
+                            oninput={handleAccountSearch}/>
+
+                        <template lwc:if={showAccountDropdown}>
+                            <div class="dropdown">
+                                <template for:each={accountResults} for:item="acc">
+                                    <div key={acc.id} class="dropdown-item"
+                                        data-id={acc.id} data-name={acc.name}
+                                        onclick={selectAccount}>
+                                        {acc.name}
+                                    </div>
+                                </template>
+                                <div class="dropdown-item create-new"
+                                    onclick={useNewAccount}>
+                                    + Create new account "{accountSearchTerm}"
+                                </div>
+                            </div>
+                        </template>
+
+                        <template lwc:if={selectedAccountName}>
+                            <div class="selected-badge">
+                                ✓ {selectedAccountName}
+                                <span class="clear-btn" onclick={clearAccount}>✕</span>
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- Priority -->
+                    <lightning-combobox
+                        label="Priority"
+                        value={priority}
+                        options={priorityOptions}
+                        onchange={handlePriority}
+                        required>
+                    </lightning-combobox>
+
+                    <!-- Application Type -->
+                    <lightning-combobox
+                        label="Application Type"
+                        value={applicationType}
+                        options={applicationTypeOptions}
+                        onchange={handleApplicationType}
+                        required>
+                    </lightning-combobox>
+
+                    <!-- Amount -->
+                    <lightning-input
+                        type="number"
+                        label="Amount"
+                        value={amount}
+                        onchange={handleAmount}
+                        formatter="currency"
+                        required>
+                    </lightning-input>
+
+                    <!-- File Upload -->
+                    <div class="field-group slds-m-top_medium">
+                        <label class="field-label">Supporting Document (Optional)</label>
+                        <input type="file"
+                            class="file-input"
+                            onchange={handleFileChange}
+                            accept=".pdf,.doc,.docx,.jpg,.png"/>
+
+                        <div class="file-helper">
+                            <span class="file-hint">📎 Accepted: PDF, DOC, DOCX, JPG, PNG</span>
+                            <span class="file-hint">📏 Maximum file size: 2MB</span>
+                        </div>
+
+                        <template lwc:if={isFileReading}>
+                            <p class="file-hint">⏳ Reading file, please wait...</p>
+                        </template>
+
+                        <template lwc:if={selectedFileName}>
+                            <div class="selected-badge slds-m-top_x-small">
+                                📄 {selectedFileName}
+                            </div>
+                        </template>
+
+                        <template lwc:if={fileSizeError}>
+                            <p class="error-msg">{fileSizeError}</p>
+                        </template>
+                    </div>
+
+                    <!-- Error -->
+                    <template lwc:if={submitError}>
+                        <p class="error-msg">{submitError}</p>
+                    </template>
+
+                    <!-- Buttons -->
+                    <div class="btn-row">
+                        <lightning-button
+                            label="Back"
+                            onclick={goBack}>
+                        </lightning-button>
+                        <lightning-button
+                            variant="brand"
+                            label="Submit Application"
+                            onclick={handleSubmit}
+                            disabled={isNotReady}>
+                        </lightning-button>
+                    </div>
+
+                    <template lwc:if={isLoading}>
+                        <lightning-spinner alternative-text="Submitting...">
+                        </lightning-spinner>
+                    </template>
+
+                </div>
+            </div>
+        </template>
+
+        <!-- STEP 3: Status -->
+        <template lwc:if={isStepStatus}>
+            <div class="card">
+                <div class="card-header">
+                    <h2>Application Status</h2>
+                    <p class="subtitle">Welcome back, {name}!</p>
+                </div>
+                <div class="card-body">
+                    <div class={statusBoxClass}>
+                        <span class="status-icon">{statusIcon}</span>
+                        <p class="status-message">{statusMessage}</p>
+
+                        <!-- Rejection reason -->
+                        <template lwc:if={isRejected}>
+                            <div class="rejection-reason">
+                                <p class="reason-label">Reason from reviewer:</p>
+                                <p class="reason-text">{rejectionReason}</p>
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- Rejected actions -->
+                    <template lwc:if={isRejected}>
+                        <div class="btn-row">
+                            <lightning-button
+                                variant="brand"
+                                label="Resubmit with New Documents"
+                                icon-name="utility:upload"
+                                onclick={goToResubmit}>
+                            </lightning-button>
+                        </div>
+                    </template>
+
+                    <!-- Approved actions -->
+                    <template lwc:if={isApproved}>
+                        <div class="btn-row">
+                            <lightning-button label="OK" onclick={resetAll}>
+                            </lightning-button>
+                            <lightning-button variant="brand" label="New Application"
+                                onclick={resetAll}>
+                            </lightning-button>
+                        </div>
+                    </template>
+
+                    <!-- Pending actions -->
+                    <template lwc:if={isPending}>
+                        <div class="btn-row">
+                            <lightning-button label="Refresh Status"
+                                onclick={handleLogin}>
+                            </lightning-button>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </template>
+
+        <!-- STEP 4: Resubmit with File -->
+        <template lwc:if={isStepResubmit}>
+            <div class="card">
+                <div class="card-header">
+                    <h2>Resubmit Application</h2>
+                    <p class="subtitle">Upload supporting documents and resubmit.</p>
+                </div>
+                <div class="card-body">
+
+                    <div class="info-box">
+                        <p>Your previous application was rejected. Upload a new document
+                        to support your resubmission.</p>
+                    </div>
+
+                    <!-- File Upload -->
+                    <div class="field-group slds-m-top_medium">
+                        <label class="field-label">
+                            Upload Document <span class="required">*</span>
+                        </label>
+                        <input type="file"
+                            class="file-input"
+                            onchange={handleFileChange}
+                            accept=".pdf,.doc,.docx,.jpg,.png"/>
+
+                        <div class="file-helper">
+                            <span class="file-hint">📎 Accepted: PDF, DOC, DOCX, JPG, PNG</span>
+                            <span class="file-hint">📏 Maximum file size: 2MB</span>
+                        </div>
+
+                        <template lwc:if={isFileReading}>
+                            <p class="file-hint">⏳ Reading file, please wait...</p>
+                        </template>
+
+                        <template lwc:if={selectedFileName}>
+                            <div class="selected-badge slds-m-top_x-small">
+                                📄 {selectedFileName}
+                            </div>
+                        </template>
+
+                        <template lwc:if={fileSizeError}>
+                            <p class="error-msg">{fileSizeError}</p>
+                        </template>
+                    </div>
+
+                    <!-- Error -->
+                    <template lwc:if={resubmitError}>
+                        <p class="error-msg">{resubmitError}</p>
+                    </template>
+
+                    <!-- Buttons -->
+                    <div class="btn-row">
+                        <lightning-button
+                            label="Back"
+                            onclick={goToStatus}>
+                        </lightning-button>
+                        <lightning-button
+                            variant="brand"
+                            label="Resubmit Application"
+                            icon-name="utility:refresh"
+                            onclick={handleResubmit}
+                            disabled={isNotReady}>
+                        </lightning-button>
+                    </div>
+
+                    <template lwc:if={isLoading}>
+                        <lightning-spinner alternative-text="Resubmitting...">
+                        </lightning-spinner>
+                    </template>
+
+                </div>
+            </div>
+        </template>
+
+    </div>
+</template>

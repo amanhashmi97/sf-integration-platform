@@ -1,0 +1,16 @@
+<template>
+
+    <template if:true={isDraft}>
+        <lightning-button 
+            label="Submit Application"
+            variant="brand"
+            onclick={handleSubmit}
+            disabled={isLoading}>
+        </lightning-button>
+    </template>
+
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Submitting"></lightning-spinner>
+    </template>
+
+</template>

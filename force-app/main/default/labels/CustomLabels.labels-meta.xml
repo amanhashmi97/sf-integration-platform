@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+
+    <labels>
+        <fullName>Integration_Failure_Header</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Header for failure email</shortDescription>
+        <value>Integration Failure Alert</value>
+    </labels>
+
+    <labels>
+        <fullName>Integration_Failure_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Failure message</shortDescription>
+        <value>The integration failed after maximum retries.</value>
+    </labels>
+
+    <labels>
+        <fullName>Integration_Failure_Subject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Email subject</shortDescription>
+        <value>Integration Failed - Action Required</value>
+    </labels>
+
+    <labels>
+        <fullName>Label_Application_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Application label</shortDescription>
+        <value>Application Name</value>
+    </labels>
+
+    <labels>
+        <fullName>Label_Status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Status label</shortDescription>
+        <value>Status</value>
+    </labels>
+
+    <labels>
+        <fullName>View_Application_Button</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Button label</shortDescription>
+        <value>View Application</value>
+    </labels>
+
+    <labels>
+        <fullName>Footer_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Footer message</shortDescription>
+        <value>Please review and take necessary action.</value>
+    </labels>
+
+    <labels>
+        <fullName>Org_Base_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Org base URL</shortDescription>
+        <value>https://orgfarm-0bc10ee3ce-dev-ed.develop.lightning.force.com</value>
+    </labels>
+
+    <labels>
+        <fullName>Support_User_Email</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Support team email</shortDescription>
+        <value>support@email.com</value>
+    </labels>
+        <labels>
+        <fullName>Approval_Email_Subject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approval Email Subject</shortDescription>
+        <value>Application Approval Required</value>
+    </labels>
+
+    <labels>
+        <fullName>Approval_Email_Greeting</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Greeting Text</shortDescription>
+        <value>Hello</value>
+    </labels>
+
+    <labels>
+        <fullName>Approval_Email_Body_Line1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Body Line 1</shortDescription>
+        <value>An application requires your approval.</value>
+    </labels>
+
+    <labels>
+        <fullName>Approval_Email_Footer</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Email Footer</shortDescription>
+        <value>Thank you.</value>
+    </labels>
+
+    <labels>
+        <fullName>Review_And_Action</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Review and Action Text</shortDescription>
+        <value>Please review and take action in Salesforce.</value>
+    </labels>
+
+    <labels>
+        <fullName>Approved_Email_Subject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approved Email Subject</shortDescription>
+        <value>Your Application has been Approved</value>
+    </labels>
+
+    <labels>
+        <fullName>Rejected_Email_Subject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Rejected Email Subject</shortDescription>
+        <value>Your Application has been Rejected</value>
+    </labels>
+
+    <labels>
+        <fullName>Approval_Email_Body</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approval Body</shortDescription>
+        <value>Your application has been approved successfully.</value>
+    </labels>
+
+    <labels>
+        <fullName>Rejection_Email_Body</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Rejection Body</shortDescription>
+        <value>Your application has been rejected. Please review the details.</value>
+    </labels>
+
+    <labels>
+        <fullName>Email_Label_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amount Label</shortDescription>
+        <value>Amount</value>
+    </labels>
+
+    <labels>
+        <fullName>Approver_Banner_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approver Banner</shortDescription>
+        <value>This application is pending your approval. Please review and take action.</value>
+    </labels>
+
+    <labels>
+        <fullName>Rejected_Banner_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Rejected Banner</shortDescription>
+        <value>This application has been rejected.</value>
+    </labels>
+
+    <labels>
+        <fullName>Approved_Banner_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approved Banner</shortDescription>
+        <value>This application has already been approved.</value>
+    </labels>
+
+    <labels>
+        <fullName>Resubmit_Banner_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Resubmit Banner</shortDescription>
+        <value>This application is resubmitted and is pending your approval. Please review and take action.</value>
+    </labels>
+
+    <labels>
+        <fullName>Approver_Group_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approvers Group Name</shortDescription>
+        <value>Application_Approvers</value>
+    </labels>
+
+    <labels>
+        <fullName>SLA_Email_Subject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SLA Subject</shortDescription>
+        <value>SLA Breach Alert — Action Required</value>
+    </labels>
+
+    <labels>
+        <fullName>SLA_Email_Regards</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SLA Regards</shortDescription>
+        <value>The following application has breached the 72-hour SLA review window and requires your immediate attention.</value>
+    </labels>
+
+    <labels>
+        <fullName>SLA_Email_Action</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SLA Action</shortDescription>
+        <value>Please log in to Salesforce and review this application immediately to avoid further delays.</value>
+    </labels>
+
+    <labels>
+        <fullName>SLA_Email_Intro</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SLA Intro</shortDescription>
+        <value>The following application has breached the 72-hour SLA review window and requires your immediate attention.</value>
+    </labels>
+
+    <labels>
+        <fullName>App_Details_Section</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Application Details</shortDescription>
+        <value>Application Details</value>
+    </labels>
+
+    <labels>
+        <fullName>Email_No_Reply</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do not reply</shortDescription>
+        <value>This is an automated notification. Please do not reply to this email.</value>
+    </labels>
+
+    <labels>
+        <fullName>Email_Header_Subtitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Header Subtitle</shortDescription>
+        <value>SF Integration Platform — Automated Notification</value>
+    </labels>
+
+    <labels>
+        <fullName>SLA_Breach_Banner_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SLA BREACH BANNER</shortDescription>
+        <value>⚠️ This application has breached the 72-hour SLA. Immediate action </value>
+    </labels>
+
+    <labels>
+        <fullName>SLA_Warning_Banner_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SLA WARNING BANNER</shortDescription>
+        <value>🕐 This application is approaching SLA breach. Please review soon.</value>
+    </labels>
+
+</CustomLabels>
